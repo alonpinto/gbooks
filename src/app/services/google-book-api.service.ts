@@ -52,8 +52,6 @@ export class GoogleBookApiServiceService {
       const userId = this.authService.getUserId();
       if (!userId) {
         this.authService.logout();
-        this.router.navigate(['/']);
-        reject('UN_AUTHORIZED');
         return;
       }
 

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 export type LoginArgs = {
@@ -39,14 +40,17 @@ const mockUsersDb = [
 
 interface IAuthService {
   login: ({ email, password }: LoginArgs) => LoginResponse;
-  logout: ({ userId }: User) => LoginResponse;
+  logout: ({ userId }: User) => void;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService implements IAuthService {
-  constructor(private cookieService: CookieService) {}
+  constructor(
+    private cookieService: CookieService,
+    private readonly router: Router
+  ) {}
 
   public login({ email, password }: LoginArgs): LoginResponse {
     const user = mockUsersDb.find(
@@ -75,14 +79,9 @@ export class AuthService implements IAuthService {
     }
   }
 
-  public logout(): LoginResponse {
+  public logout(): void {
     this.cookieService.delete('user_id');
-
-    return {
-      code: 200,
-      message: 'Goodbye',
-      user: null,
-    };
+    this.router.navigate(['/']);
   }
 
   public getUserId(): string {
