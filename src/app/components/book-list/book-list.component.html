@@ -1,0 +1,16 @@
+<div class="comment-list">
+  <div
+    *ngIf="!!books.length; else NoBooksFound"
+    style="display: flex; gap: 20px; flex-flow: column wrap; cursor: pointer"
+  >
+    <app-book
+      [book]="book"
+      [isFavorite]="book.isFavorite"
+      class="example-card"
+      *ngFor="let book of books"
+      (toggleFavorite)="toggleFavorite(book)"
+    />
+  </div>
+
+  <ng-template #NoBooksFound>Start new Search</ng-template>
+</div>
