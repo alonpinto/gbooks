@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+
+import { BookType } from '../types';
 import { AuthService } from './auth.service';
-import { BookType } from './google-book-api.service';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({

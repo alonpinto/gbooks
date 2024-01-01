@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MaterialModule } from '../../material.module';
-import { BookType } from '../../services/google-book-api.service';
-import { CommonModule } from '@angular/common';
+import { BookType } from '../../types';
 
 @Component({
   selector: 'app-book',

@@ -1,29 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-
-export type LoginArgs = {
-  email: string;
-  password: string;
-};
-
-export type LogoutArgs = {
-  userId: string;
-};
-
-export type LoginResponse = {
-  code: number;
-  message: string;
-  user: UserOutput | null;
-};
-
-type User = {
-  userId: string;
-  email: string;
-  password: string;
-};
-
-export type UserOutput = Omit<User, 'password'>;
+import { IAuthService } from '../interfaces/auth.interface';
+import { LoginArgs, LoginResponse } from '../types';
 
 const mockUsersDb = [
   {
@@ -37,11 +16,6 @@ const mockUsersDb = [
     password: 'demo2',
   },
 ];
-
-interface IAuthService {
-  login: ({ email, password }: LoginArgs) => LoginResponse;
-  logout: ({ userId }: User) => void;
-}
 
 @Injectable({
   providedIn: 'root',

@@ -5,32 +5,10 @@ import {
   BookResultServerBookItemDto,
   BookResultServerDto,
 } from '../components/dtos/book-result.server.dto';
+
+import { BookType, BooksFetchResponseOutput, FetchBooksArgs } from '../types';
 import { AuthService } from './auth.service';
 import { FavoriteService } from './favorite.service';
-
-type FetchBooksArgs = {
-  q: string;
-  limit?: number;
-  skip?: number;
-};
-
-export type BooksFetchResponseOutput = {
-  total: number;
-  limit: number;
-  skip: number;
-  books: BookType[];
-};
-
-export type BookType = {
-  id: string;
-  isFavorite: boolean;
-  title: string;
-  authors: string[];
-  description: string;
-  publishDate: string;
-  smallThumbnail: string;
-  thumbnail: string;
-};
 
 @Injectable({
   providedIn: 'root',

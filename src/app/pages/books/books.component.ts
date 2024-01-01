@@ -6,11 +6,9 @@ import { BooksFilterComponent } from '../../components/books-filter/books-filter
 import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 import { MaterialModule } from '../../material.module';
 import { PagerComponent } from '../../pager/pager.component';
-import {
-  BookType,
-  BooksFetchResponseOutput,
-  GoogleBookApiServiceService,
-} from '../../services/google-book-api.service';
+
+import { GoogleBookApiServiceService } from '../../services/google-book-api.service';
+import { BookType, BooksFetchResponseOutput } from '../../types';
 
 @Component({
   selector: 'app-book-result',
