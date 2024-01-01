@@ -47,7 +47,7 @@ export class GoogleBookApiServiceService {
     q,
     limit = 10,
     skip = 0,
-  }: FetchBooksArgs): Promise<BooksFetchResponseOutput> {
+  }: FetchBooksArgs): Promise<BooksFetchResponseOutput | string> {
     return new Promise((resolve, reject) => {
       const userId = this.authService.getUserId();
       if (!userId) {
@@ -55,6 +55,12 @@ export class GoogleBookApiServiceService {
         return;
       }
 
+      if (!q) {
+        const error = 'fetchBooks -> term is required';
+        console.error(error);
+        resolve(error);
+        return;
+      }
       this.http
         .get<BookResultServerDto>(
           `https://www.googleapis.com/books/v1/volumes?q=${q}&key=AIzaSyD4IRTVlGChnYDhmN2bo2aKLii1ZWwx-uM&startIndex=${skip}&maxResults=${limit}`

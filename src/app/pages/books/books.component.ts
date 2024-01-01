@@ -55,14 +55,15 @@ export class BooksPageComponent {
       this.isFetching = true;
       this.term = term;
 
-      const res: BooksFetchResponseOutput = await this.booksApi.fetchBooks({
-        q: term,
-        skip: this.skip,
-        limit: this.limit,
-      });
+      const res: BooksFetchResponseOutput | string =
+        await this.booksApi.fetchBooks({
+          q: term,
+          skip: this.skip,
+          limit: this.limit,
+        });
 
       this.isFetching = false;
-      this.books = res.books;
+      this.books = (res as BooksFetchResponseOutput).books;
     } catch (err) {
       this.isFetching = false;
       this.error = 'Error accrued try again! ';
