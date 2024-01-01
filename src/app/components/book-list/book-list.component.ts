@@ -25,6 +25,7 @@ export class BookListComponent {
   ) {}
 
   async toggleFavorite(book: BookType) {
+    book.isFavorite = !book.isFavorite;
     this.favoriteService.toggle(book);
   }
 }

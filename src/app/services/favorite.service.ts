@@ -18,7 +18,7 @@ export class FavoriteService {
     if (!userId) {
       this.authService.logout();
     }
-    
+
     return `favorite_${userId}`;
   }
 
@@ -26,7 +26,7 @@ export class FavoriteService {
   add(bookId: string, value: BookType): void {
     const key = `${this.getPrefix}~${bookId}`;
     console.log(`FavoriteService=> key ${key}`);
-    value.isFavorite = true;
+
     this.dataLayer.setItem(key, JSON.stringify(value));
   }
 
