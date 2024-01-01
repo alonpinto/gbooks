@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   BookResultServerBookItemDto,
   BookResultServerDto,
 } from '../components/dtos/book-result.server.dto';
+import { AuthService } from './auth.service';
 import { FavoriteService } from './favorite.service';
 
 type FetchBooksArgs = {
@@ -36,7 +38,9 @@ export type BookType = {
 export class GoogleBookApiServiceService {
   constructor(
     private http: HttpClient,
-    private readonly favoriteService: FavoriteService
+    private readonly favoriteService: FavoriteService,
+    private readonly authService: AuthService,
+    private readonly router: Router
   ) {}
 
   async fetchBooks({
@@ -45,6 +49,14 @@ export class GoogleBookApiServiceService {
     skip = 0,
   }: FetchBooksArgs): Promise<BooksFetchResponseOutput> {
     return new Promise((resolve, reject) => {
+      const userId = this.authService.getUserId();
+      if (!userId) {
+        this.authService.logout();
+        this.router.navigate(['/']);
+        reject('UN_AUTHORIZED');
+        return;
+      }
+
       this.http
         .get<BookResultServerDto>(
           `https://www.googleapis.com/books/v1/volumes?q=${q}&key=AIzaSyD4IRTVlGChnYDhmN2bo2aKLii1ZWwx-uM&startIndex=${skip}&maxResults=${limit}`
@@ -54,16 +66,15 @@ export class GoogleBookApiServiceService {
           const favoriteIds: Set<string> =
             this.favoriteService.getUserFavoriteIds();
 
-          console.log(`====favoriteIds`, favoriteIds),
-            resolve({
-              total: data.totalItems,
-              limit,
-              skip,
+          resolve({
+            total: data.totalItems,
+            limit,
+            skip,
 
-              books: data?.items?.map((item) =>
-                mapperBookServerDtoToClient(item, favoriteIds)
-              ),
-            });
+            books: data?.items?.map((item) =>
+              mapperBookServerDtoToClient(item, favoriteIds)
+            ),
+          });
         });
     });
   }

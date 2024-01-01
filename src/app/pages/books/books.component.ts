@@ -3,6 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { BookListComponent } from '../../components/book-list/book-list.component';
 import { BooksFilterComponent } from '../../components/books-filter/books-filter.component';
+import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 import { MaterialModule } from '../../material.module';
 import { PagerComponent } from '../../pager/pager.component';
 import {
@@ -21,6 +22,7 @@ import {
     BooksFilterComponent,
     BookListComponent,
     PagerComponent,
+    TopBarComponent,
   ],
   templateUrl: './books.component.html',
   styleUrl: './books-page.component.sass',

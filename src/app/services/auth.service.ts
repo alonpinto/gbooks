@@ -75,7 +75,7 @@ export class AuthService implements IAuthService {
     }
   }
 
-  public logout({ userId }: LogoutArgs): LoginResponse {
+  public logout(): LoginResponse {
     this.cookieService.delete('user_id');
 
     return {
@@ -83,5 +83,10 @@ export class AuthService implements IAuthService {
       message: 'Goodbye',
       user: null,
     };
+  }
+
+  public getUserId(): string {
+    const userId = this.cookieService.get('user_id') || '';
+    return userId;
   }
 }

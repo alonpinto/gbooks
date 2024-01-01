@@ -15,6 +15,7 @@ export class FavoriteService {
   add(bookId: string, value: BookType): void {
     const key = `${this.prefixTemplate}~${bookId}`;
     console.log(`FavoriteService=> key ${key}`);
+    value.isFavorite = true;
     this.dataLayer.setItem(key, JSON.stringify(value));
   }
 
