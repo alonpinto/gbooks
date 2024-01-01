@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MaterialModule } from '../../material.module';
@@ -28,9 +33,17 @@ export class LoginComponent {
   }
 
   form: FormGroup = new FormGroup({
-    email: new FormControl('demo@gmail.com'),
-    password: new FormControl('demo'),
+    email: new FormControl('', Validators.email),
+    password: new FormControl('', Validators.required),
   });
+
+  get email() {
+    return this.form.get('email');
+  }
+
+  get password() {
+    return this.form.get('password');
+  }
 
   submit() {
     this.error = null;
