@@ -80,5 +80,8 @@ export const mapperBookServerDtoToClient = (
     publishDate: bookInfo.publishedDate,
     smallThumbnail: bookInfo.imageLinks?.smallThumbnail || defaultImage,
     thumbnail: bookInfo.imageLinks?.thumbnail || defaultImage,
+    previewLink: bookInfo.previewLink,
+    pageCount: bookInfo.pageCount,
+    language: bookInfo.language,
   };
 };

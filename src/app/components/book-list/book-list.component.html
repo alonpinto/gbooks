@@ -9,6 +9,7 @@
       class="example-card"
       *ngFor="let book of books"
       (toggleFavorite)="toggleFavorite(book)"
+      (getMoreInfo)="getMoreInfo(book)"
     />
   </div>
 

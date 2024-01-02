@@ -7,11 +7,12 @@ import { BookType } from '../../types';
   selector: 'app-book',
   standalone: true,
   imports: [MaterialModule, CommonModule],
-  templateUrl: './book.component.html',
-  styleUrl: './book.component.sass',
+  templateUrl: './book-item.component.html',
+  styleUrl: './book-item.component.sass',
 })
-export class BookComponent {
+export class BookItemComponent {
   @Input() book!: BookType;
   @Input() isFavorite: boolean = false;
   @Output() toggleFavorite = new EventEmitter<BookType>();
+  @Output() getMoreInfo = new EventEmitter<BookType>();
 }

@@ -1,5 +1,5 @@
 <span
-  class="flex flex-col bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+  class="flex flex-col  bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
 >
   <img
     class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg"
@@ -29,6 +29,10 @@
 
     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
       {{ book.description }}
+      <button class="inline" mat-button (click)="getMoreInfo.emit(book)">
+        <mat-icon>more_info</mat-icon>
+        More Details
+      </button>
     </p>
   </div>
 </span>

@@ -20,6 +20,9 @@ export type BookType = {
   publishDate: string;
   smallThumbnail: string;
   thumbnail: string;
+  previewLink?: string;
+  pageCount: number;
+  language: string;
 };
 
 export type LoginArgs = {
