@@ -1,9 +1,9 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 import { MaterialModule } from '../../material.module';
 import { BookType } from '../../types';
-import { TopBarComponent } from '../../components/top-bar/top-bar.component';
 
 @Component({
   selector: 'app-book-page',
