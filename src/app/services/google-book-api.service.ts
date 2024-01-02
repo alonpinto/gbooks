@@ -41,7 +41,7 @@ export class GoogleBookApiServiceService {
       }
       this.http
         .get<BookResultServerDto>(
-          `https://www.googleapis.com/books/v1/volumes?q=${q}&key=AIzaSyD4IRTVlGChnYDhmN2bo2aKLii1ZWwx-uM&startIndex=${skip}&maxResults=${limit}`
+          `https://www.googleapis.com/books/v1/volumes?q=${q}&startIndex=${skip}&maxResults=${limit}`
         )
 
         .subscribe((data) => {
